@@ -1,0 +1,59 @@
+<div class="container mb-5">
+  <div class="jumbotron mt-5">
+    <h1 class="h1">A Web Assembly Introduction</h1>
+  </div>
+
+  <h2>Fibonacci</h2>
+  <button type="button" class="btn btn-primary" (click)="callFibo()">{{displayHideFibo}}</button>
+  
+  <table class="table table-striped mt-5" [hidden]="!fiboComputed">
+    <tr>
+      <th>Operation</th>
+      <th>
+        Temps d'execution TypeScript
+        <button type="button" class="btn btn-primary" (click)="callFiboTS()">Executer</button>
+      </th>
+      <th>
+        Temps d'execution WebAssembly
+        <button type="button" class="btn btn-primary" (click)="callFiboWA()">Executer</button>
+      </th>
+    </tr>
+    <tr *ngFor="let exec of comparatorExecFibo; let i = index">
+      <td>Fibonacci(<b>{{i}}</b>)</td>
+      <td [hidden]="!fiboTSComputed">{{exec.timeTS}}ms</td>
+      <td [hidden]="!fiboWAComputed">{{exec.timeWA}}ms</td>
+    </tr>
+  </table>
+
+  <hr>
+
+  <h2 class="mt-5">Jouons avec la mémoire</h2>
+  <h6>Ici on alloue petit à petit un tableau dans lequel on insert des caractères puis on le retourne<br><small>Taille du tableau : 10 000 000 d'éléments</small></h6>
+  
+  <button type="button" class="btn btn-primary" (click)="callPWM()">{{displayHidePWM}}</button>
+  
+  <table class="table table-striped mt-5" [hidden]="!PWMComputed">
+    <tr>
+      <th>#</th>
+      <th>
+        Temps d'execution TypeScript
+        <button type="button" class="btn btn-primary" (click)="callPWMTS()">Executer</button>
+      </th>
+      <th>
+        Temps d'execution WebAssembly
+        <button type="button" class="btn btn-primary" (click)="callPWMWA()">Executer</button>
+      </th>
+    </tr>
+    <tr *ngFor="let exec of comparatorExecPWM; let i = index">
+      <td [hidden]="exec.timeTS === undefined && exec.timeWA === undefined"><b>{{i + 1}}</b></td>
+      <td [hidden]="!PWMTSComputed">{{exec.timeTS}}ms</td>
+      <td [hidden]="!PWMWAComputed">{{exec.timeWA}}ms</td>
+    </tr>
+    <tr class="moyenne b-0">
+      <th><button type="button" class="btn btn-primary" (click)="computeAverage()">Calculer la moyenne</button></th>
+      <th [hidden]="average.timeTS === 0">{{average.timeTS}}ms</th>
+      <th [hidden]="average.timeWA === 0">{{average.timeWA}}ms</th>
+    </tr>
+  </table>
+
+</div>

@@ -1,0 +1,20 @@
+.jumbotron {
+  background: rgb(93, 85, 199);
+  color: rgb(44, 207, 153);
+}
+
+.btn-primary {
+  background: rgb(33, 163, 120);
+  border: rgb(33, 163, 120);
+  &:hover {
+    background: rgb(40, 192, 141);
+  }
+  &:focus {
+    box-shadow: 0 0 0 0.2rem rgb(40, 192, 141);
+  }
+  
+}
+
+.moyenne {
+  background: white !important;
+}
